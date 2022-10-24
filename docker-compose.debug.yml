@@ -1,0 +1,8 @@
+version: '3.7'
+# Use this file to override the existing `docker-compose.yml` file with extra properties necessary for Debuggin.
+services:
+   backend-server:
+    extends:
+      file: docker-compose.yml
+      service: backend-server
+    entrypoint: ['tail', '-f', '/dev/null'] # Uncomment to keep alive and able to debug

@@ -1,0 +1,9 @@
+version: '3.7'
+# Use this file to override the existing `docker-compose.yml` file with extra properties necessary for Production.
+services:
+   backend-server:
+     extends:
+        file: docker-compose.yml
+        service: backend-server
+     environment:
+        NODE_ENV: Production
