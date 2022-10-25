@@ -28,21 +28,3 @@ COPY ./src /code/src
 RUN npm run build
 
 WORKDIR /code/dist
-
-
-# Use alpine for the last image, as it's the smallest.
-FROM node:19.0.0-alpine AS production-container
-
-WORKDIR /code
-COPY ["package-lock.json*",  "./"]
-# As this file hasn't been changed, the cache isn't invalidated
-COPY --from=deps /tmp/deps.json ./package.json
-# Only take the packages we need
-RUN npm ci --omit=dev
-
-COPY --from=build-stage /code/dist /code/dist
-
-WORKDIR /code/dist
-
-# Expose the port for easier access
-EXPOSE 3000
