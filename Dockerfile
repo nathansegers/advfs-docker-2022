@@ -29,7 +29,6 @@ RUN npm run build
 
 WORKDIR /code/dist
 
-
 # Use alpine for the last image, as it's the smallest.
 FROM node:19.0.0-alpine AS production-container
 
